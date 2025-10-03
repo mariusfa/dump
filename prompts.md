@@ -225,7 +225,34 @@ Suggested:
 
 **User:** Skriv ned alle prompts til nå i en prompts.md fil
 
-**Current action:** Creating this file.
+**Actions taken:** Created prompts.md with complete development history.
+
+---
+
+**User:** Hva om vi lager en prompts-visualization.md? Der prompten kommer i en code block og under så kommer en liste over hvilke filer som er blitt endret, og en kort tekstlig beskrivelse av funksjonalitetsendringen.
+
+**Actions taken:** Created prompts-visualization.md with visual timeline format.
+
+---
+
+**User:** Fra nå av så for alle instruksjoner vi gir så oppdater prompts.md og potensielt prompts-visualizations.md
+
+**Response:** Confirmed - will automatically update both documentation files for all future instructions.
+
+---
+
+**User:** Kan du lage et bilde av prompts-visualizations.md som viser flyten av utviklingen der våre og dine bidrag er illustrert med avatarer?
+
+**User:** Hva med en svg fil eller noe sånt. Kanskje lage en knapp i våres app for å få den vist også?
+
+**Actions taken:**
+- Created SVG visualization (public/dev-journey.svg) showing development flow
+- User prompts (👤) and AI responses (🤖) in conversation format
+- 9 major development steps visualized
+- Created DevJourney component to display the visualization
+- Added "📊 Dev Journey" button in app header
+- Styled modal overlay with glassmorphism
+- Animated entrance/exit effects
 
 ---
 

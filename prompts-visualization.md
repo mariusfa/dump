@@ -256,12 +256,53 @@ hvilke filer som er blitt endret, og en kort tekstlig beskrivelse av funksjonali
 
 ---
 
+## 14. Auto-update Documentation
+
+```
+User: "Fra nå av så for alle instruksjoner vi gir så oppdater prompts.md
+og potensielt prompts-visualizations.md"
+```
+
+**Files Changed:** None (process change)
+
+**Functionality:** Established automatic documentation updates for all future development steps.
+
+---
+
+## 15. SVG Development Journey
+
+```
+User: "Kan du lage et bilde av prompts-visualizations.md som viser flyten
+av utviklingen der våre og dine bidrag er illustrert med avatarer?"
+User: "Hva med en svg fil eller noe sånt. Kanskje lage en knapp i våres app
+for å få den vist også?"
+```
+
+**Files Changed:**
+- `public/dev-journey.svg` (new)
+- `src/components/DevJourney.tsx` (new)
+- `src/App.tsx`
+- `src/App.css`
+- `prompts.md`
+- `prompts-visualization.md`
+
+**Functionality:**
+- Created interactive SVG visualization of development journey
+- Shows conversation flow between user (👤) and AI (🤖)
+- 9 major development steps with glassmorphism cards
+- Added "📊 Dev Journey" button in app header
+- Modal overlay with smooth animations
+- Scrollable content for full timeline view
+- Responsive design for mobile/desktop
+
+---
+
 ## Summary Statistics
 
-**Total Commits:** 11 (excluding documentation)
-**Total Files Created:** 20+
+**Total Commits:** 12+ (excluding documentation)
+**Total Files Created:** 22+
 **Total Tests:** 30+
-**Lines of Code:** ~2000+
+**Lines of Code:** ~2200+
 
 **Key Milestones:**
 1. ✅ Project setup with Vite + React + TypeScript
