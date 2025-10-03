@@ -48,6 +48,16 @@ export function useImageStorage() {
     }
   }
 
+  const updateImageAudio = async (id: number, audioBlob: Blob) => {
+    try {
+      await updateImage(id, { audioBlob })
+      await loadImages()
+    } catch (err) {
+      setError(err as Error)
+      throw err
+    }
+  }
+
   const removeImage = async (id: number) => {
     try {
       await deleteImage(id)
@@ -64,6 +74,7 @@ export function useImageStorage() {
     error,
     addImage,
     updateImageDescription,
+    updateImageAudio,
     removeImage,
     refresh: loadImages
   }

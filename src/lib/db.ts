@@ -7,6 +7,7 @@ export interface StoredImage {
   file: File
   timestamp: number
   description?: string
+  audioBlob?: Blob
 }
 
 export function openDB(): Promise<IDBDatabase> {

@@ -8,7 +8,8 @@ describe('ImageCard', () => {
     imageUrl: 'blob:http://localhost/test',
     timestamp: new Date('2024-01-15').getTime(),
     onDelete: vi.fn(),
-    onUpdateDescription: vi.fn()
+    onUpdateDescription: vi.fn(),
+    onUpdateAudio: vi.fn()
   }
 
   it('renders image with correct src', () => {

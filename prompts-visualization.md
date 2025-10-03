@@ -456,12 +456,50 @@ User: "ja" (update SVG with missing steps)
 
 ---
 
+## 22. Audio Recording Feature
+
+```
+User: "Nice. Vi kunne tenkt også en mikrofon for å ta opp lyd og lagres sammen med bilde og teksten."
+User: "Vi dropper transkribering og bare trenger lydopptak"
+User: "Option C" (Add to existing images on card)
+```
+
+**Files Changed:**
+- `src/lib/db.ts` (added audioBlob field)
+- `src/hooks/useAudioRecorder.ts` (new)
+- `src/hooks/useImageStorage.ts` (added updateImageAudio)
+- `src/components/ImageCard.tsx` (added audio recording UI)
+- `src/components/ImageCard.test.tsx` (updated mock props)
+- `src/components/ImageGrid.tsx` (added onUpdateAudio prop)
+- `src/App.tsx` (added handleUpdateAudio)
+- `src/App.css` (added audio styling)
+- `prompts.md`
+- `prompts-visualization.md`
+
+**Functionality:**
+- Created `useAudioRecorder` hook using MediaRecorder API
+- Added `audioBlob?: Blob` field to StoredImage interface
+- Added `updateImageAudio` function to useImageStorage hook
+- Updated ImageCard with audio recording UI:
+  - "🎤 Legg til lydnotat" button when no audio
+  - Recording states: idle → recording (🔴 Tar opp...) → stopped (preview)
+  - Audio preview with native HTML5 audio player
+  - Save/cancel buttons for recorded audio
+  - Playback of saved audio with controls
+- Records in WebM/Opus format (good compression, wide browser support)
+- Properly releases microphone after recording
+- Glassmorphism styling with pulsing recording indicator
+- Discussed but deferred transcription options (Web Speech API, OpenAI Whisper, etc.)
+- Build ✓
+
+---
+
 ## Summary Statistics
 
-**Total Commits:** 14+ (excluding documentation)
-**Total Files Created:** 22+
+**Total Commits:** 15+ (excluding documentation)
+**Total Files Created:** 23+
 **Total Tests:** 40+
-**Lines of Code:** ~2400+
+**Lines of Code:** ~2600+
 
 **Key Milestones:**
 1. ✅ Project setup with Vite + React + TypeScript
@@ -472,8 +510,9 @@ User: "ja" (update SVG with missing steps)
 6. ✅ Modern gradient design with animations
 7. ✅ Interactive development journey visualization
 8. ✅ Text descriptions for images
-9. ✅ Centered layout
-10. ✅ Complete documentation with auto-updating SVG
+9. ✅ Audio recording and playback
+10. ✅ Centered layout
+11. ✅ Complete documentation with auto-updating SVG
 
 **Tech Stack:**
 - React 19 + TypeScript

@@ -362,6 +362,41 @@ Suggested:
 
 ---
 
+## Audio Recording Feature
+
+**User:** Nice. Vi kunne tenkt også en mikrofon for å ta opp lyd og lagres sammen med bilde og teksten.
+
+**Response:** Discussed transcription options (Web Speech API, OpenAI Whisper, Google Cloud, Azure, self-hosted Whisper). Recommended implementing audio recording first, then deciding on transcription later.
+
+**User:** Vi dropper transkribering og bare trenger lydopptak
+
+**Response:** Discussed UI/UX options:
+- Option A: Separate audio button (audio-only memories)
+- Option B: Combined with photo capture
+- Option C: Add to existing images (matches description pattern)
+- Option D: Audio during/after camera capture
+
+**User:** Option C
+
+**Actions taken:**
+- Created `useAudioRecorder` hook using MediaRecorder API
+- Added `audioBlob?: Blob` field to StoredImage interface
+- Added `updateImageAudio` function to useImageStorage hook
+- Updated ImageCard with audio recording UI:
+  - "🎤 Legg til lydnotat" button when no audio
+  - Recording states: idle → recording (🔴 Tar opp...) → stopped (preview)
+  - Audio preview with native HTML5 audio player
+  - Save/cancel buttons for recorded audio
+  - Playback of saved audio with controls
+- Updated ImageGrid and App.tsx to pass audio callbacks
+- Added glassmorphism styling for audio UI
+- Pulsing animation for recording indicator
+- Records in WebM/Opus format (good compression, wide browser support)
+- Properly releases microphone after recording
+- Build ✓
+
+---
+
 ## Summary
 
 The DUMP app was built through iterative development with focus on:
@@ -383,6 +418,7 @@ The DUMP app was built through iterative development with focus on:
 - Camera capture with rear camera support
 - Image storage in IndexedDB
 - Text descriptions for images (editable on card)
+- Audio recording and playback (voice notes for images)
 - Responsive image grid
 - Delete functionality
 - Gradient background with animated grid lines

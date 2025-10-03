@@ -10,7 +10,7 @@ import { ImageGrid } from './components/ImageGrid'
 import { DevJourney } from './components/DevJourney'
 
 function App() {
-  const { images, loading, addImage, updateImageDescription, removeImage } = useImageStorage()
+  const { images, loading, addImage, updateImageDescription, updateImageAudio, removeImage } = useImageStorage()
   const { getImageUrl, revokeImageUrl } = useImageUrls(images)
   const [showDevJourney, setShowDevJourney] = useState(false)
 
@@ -27,6 +27,10 @@ function App() {
 
   const handleUpdateDescription = async (id: number, description: string) => {
     await updateImageDescription(id, description)
+  }
+
+  const handleUpdateAudio = async (id: number, audioBlob: Blob) => {
+    await updateImageAudio(id, audioBlob)
   }
 
   return (
@@ -52,6 +56,7 @@ function App() {
             getImageUrl={getImageUrl} 
             onDelete={handleDelete}
             onUpdateDescription={handleUpdateDescription}
+            onUpdateAudio={handleUpdateAudio}
           />
         )}
       </main>
