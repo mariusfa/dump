@@ -256,6 +256,16 @@ Suggested:
 
 ---
 
+**User:** Fra image copy.png ser du at knappen havnet over logoen. Der er litt dumt. Og fra image copy 2.png ser man at det ikke vises noen svg
+
+**Actions taken:**
+- Fixed Dev Journey button positioning (moved to top-right of header, not overlapping logo)
+- Fixed SVG not displaying by converting inline style to proper SVG gradient definition
+- Changed from `style="background: linear-gradient(...)"` to `<linearGradient>` in defs
+- Added background rect with gradient fill
+
+---
+
 ## Summary
 
 The DUMP app was built through iterative development with focus on:

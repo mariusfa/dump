@@ -297,6 +297,27 @@ for å få den vist også?"
 
 ---
 
+## 16. Fix Dev Journey UI Issues
+
+```
+User: "Fra image copy.png ser du at knappen havnet over logoen. Der er litt dumt.
+Og fra image copy 2.png ser man at det ikke vises noen svg"
+```
+
+**Files Changed:**
+- `src/App.css`
+- `public/dev-journey.svg`
+- `prompts.md`
+- `prompts-visualization.md`
+
+**Functionality:**
+- Fixed button positioning - moved to top-right corner without overlapping logo
+- Fixed SVG rendering issue by converting inline CSS gradient to proper SVG `<linearGradient>` definition
+- Added background `<rect>` with gradient fill for proper display
+- Button now positioned relative to header container
+
+---
+
 ## Summary Statistics
 
 **Total Commits:** 12+ (excluding documentation)
