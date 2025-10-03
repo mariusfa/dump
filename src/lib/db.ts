@@ -56,6 +56,32 @@ export async function getAllImages(): Promise<StoredImage[]> {
   })
 }
 
+export async function updateImage(id: number, updates: Partial<Omit<StoredImage, 'id'>>): Promise<void> {
+  const db = await openDB()
+  
+  return new Promise((resolve, reject) => {
+    const transaction = db.transaction(STORE_NAME, 'readwrite')
+    const store = transaction.objectStore(STORE_NAME)
+    const getRequest = store.get(id)
+
+    getRequest.onsuccess = () => {
+      const image = getRequest.result
+      if (!image) {
+        reject(new Error('Image not found'))
+        return
+      }
+
+      const updatedImage = { ...image, ...updates }
+      const putRequest = store.put(updatedImage)
+
+      putRequest.onsuccess = () => resolve()
+      putRequest.onerror = () => reject(putRequest.error)
+    }
+
+    getRequest.onerror = () => reject(getRequest.error)
+  })
+}
+
 export async function deleteImage(id: number): Promise<void> {
   const db = await openDB()
   

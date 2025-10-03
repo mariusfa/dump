@@ -370,12 +370,47 @@ error rendering image. dump-icon.svg åpnes helt fint da"
 
 ---
 
+## 19. Text Description Feature
+
+```
+User: "Nice. Neste feature. Mulighet til å legge til tekst beskrivelse på bildet som blir tatt"
+User: "Option C" (Edit on card - add description later)
+```
+
+**Files Changed:**
+- `src/lib/db.ts` (added updateImage function)
+- `src/lib/db.test.ts` (added 2 tests for updateImage)
+- `src/hooks/useImageStorage.ts` (added updateImageDescription)
+- `src/components/ImageCard.tsx` (added edit mode with textarea)
+- `src/components/ImageCard.test.tsx` (added 8 tests for description)
+- `src/components/ImageGrid.tsx` (added onUpdateDescription prop)
+- `src/App.tsx` (added handleUpdateDescription)
+- `src/App.css` (added description styling)
+- `prompts.md`
+- `prompts-visualization.md`
+
+**Functionality:**
+- Added `updateImage()` function to db.ts for updating image descriptions
+- Added `updateImageDescription()` to useImageStorage hook
+- Updated ImageCard component with edit mode:
+  - Shows "Ingen beskrivelse" placeholder when empty
+  - Shows "➕ Legg til beskrivelse" button when no description
+  - Shows "✏️ Rediger" button when description exists
+  - Edit mode with textarea, save, and cancel buttons
+- Updated ImageGrid to pass onUpdateDescription callback
+- Added glassmorphism styling for description UI elements
+- Added 10 new tests (8 component + 2 db)
+- Total: 40+ tests passing
+- Build ✓
+
+---
+
 ## Summary Statistics
 
-**Total Commits:** 12+ (excluding documentation)
+**Total Commits:** 13+ (excluding documentation)
 **Total Files Created:** 22+
-**Total Tests:** 30+
-**Lines of Code:** ~2200+
+**Total Tests:** 40+
+**Lines of Code:** ~2400+
 
 **Key Milestones:**
 1. ✅ Project setup with Vite + React + TypeScript
@@ -384,7 +419,8 @@ error rendering image. dump-icon.svg åpnes helt fint da"
 4. ✅ IndexedDB persistent storage
 5. ✅ Component architecture refactoring
 6. ✅ Modern gradient design with animations
-7. ✅ Complete documentation
+7. ✅ Text descriptions for images
+8. ✅ Complete documentation
 
 **Tech Stack:**
 - React 19 + TypeScript

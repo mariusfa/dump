@@ -296,6 +296,34 @@ Suggested:
 
 ---
 
+## Text Description Feature
+
+**User:** Nice. Neste feature. Mulighet til å legge til tekst beskrivelse på bildet som blir tatt
+
+**Response:** Discussed three UI/UX options:
+- Option A: Modal after capture (describe while memory is fresh)
+- Option B: Inline prompt (immediate editing in grid)
+- Option C: Edit on card (add description later)
+
+**User:** Option C
+
+**Actions taken:**
+- Added `updateImage()` function to db.ts for updating image descriptions
+- Added `updateImageDescription()` to useImageStorage hook
+- Updated ImageCard component with edit mode:
+  - Shows "Ingen beskrivelse" placeholder when empty
+  - Shows "➕ Legg til beskrivelse" button when no description
+  - Shows "✏️ Rediger" button when description exists
+  - Edit mode with textarea, save, and cancel buttons
+- Updated ImageGrid to pass onUpdateDescription callback
+- Updated App.tsx to handle description updates
+- Added glassmorphism styling for description UI elements
+- Added 8 new tests for ImageCard description functionality
+- Added 2 new tests for updateImage in db.test.ts
+- Build ✓
+
+---
+
 ## Summary
 
 The DUMP app was built through iterative development with focus on:
@@ -316,8 +344,9 @@ The DUMP app was built through iterative development with focus on:
 **Key features:**
 - Camera capture with rear camera support
 - Image storage in IndexedDB
+- Text descriptions for images (editable on card)
 - Responsive image grid
 - Delete functionality
 - Gradient background with animated grid lines
 - Glassmorphism UI design
-- 30+ tests covering all functionality
+- 40+ tests covering all functionality

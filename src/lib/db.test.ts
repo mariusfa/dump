@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach, afterEach } from 'vitest'
 import 'fake-indexeddb/auto'
-import { openDB, saveImage, getAllImages, deleteImage, type StoredImage } from './db'
+import { openDB, saveImage, getAllImages, updateImage, deleteImage, type StoredImage } from './db'
 
 describe('IndexedDB utilities', () => {
   beforeEach(async () => {
@@ -84,5 +84,22 @@ describe('IndexedDB utilities', () => {
     
     expect(savedImage).toBeDefined()
     expect(savedImage!.description).toBe('Test description')
+  })
+
+  it('updates image description', async () => {
+    const file = new File(['test'], 'test.png', { type: 'image/png' })
+    const id = await saveImage({ file, timestamp: Date.now() })
+
+    await updateImage(id, { description: 'Updated description' })
+
+    const images = await getAllImages()
+    const updatedImage = images.find(img => img.id === id)
+    
+    expect(updatedImage).toBeDefined()
+    expect(updatedImage!.description).toBe('Updated description')
+  })
+
+  it('throws error when updating non-existent image', async () => {
+    await expect(updateImage(999, { description: 'Test' })).rejects.toThrow('Image not found')
   })
 })

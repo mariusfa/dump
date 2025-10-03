@@ -10,7 +10,7 @@ import { ImageGrid } from './components/ImageGrid'
 import { DevJourney } from './components/DevJourney'
 
 function App() {
-  const { images, loading, addImage, removeImage } = useImageStorage()
+  const { images, loading, addImage, updateImageDescription, removeImage } = useImageStorage()
   const { getImageUrl, revokeImageUrl } = useImageUrls(images)
   const [showDevJourney, setShowDevJourney] = useState(false)
 
@@ -23,6 +23,10 @@ function App() {
   const handleDelete = async (id: number) => {
     revokeImageUrl(id)
     await removeImage(id)
+  }
+
+  const handleUpdateDescription = async (id: number, description: string) => {
+    await updateImageDescription(id, description)
   }
 
   return (
@@ -46,7 +50,8 @@ function App() {
           <ImageGrid 
             images={images} 
             getImageUrl={getImageUrl} 
-            onDelete={handleDelete} 
+            onDelete={handleDelete}
+            onUpdateDescription={handleUpdateDescription}
           />
         )}
       </main>

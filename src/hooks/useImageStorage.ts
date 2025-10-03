@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { type StoredImage, saveImage, getAllImages, deleteImage } from '../lib/db'
+import { type StoredImage, saveImage, getAllImages, updateImage, deleteImage } from '../lib/db'
 
 export function useImageStorage() {
   const [images, setImages] = useState<StoredImage[]>([])
@@ -38,6 +38,16 @@ export function useImageStorage() {
     }
   }
 
+  const updateImageDescription = async (id: number, description: string) => {
+    try {
+      await updateImage(id, { description })
+      await loadImages()
+    } catch (err) {
+      setError(err as Error)
+      throw err
+    }
+  }
+
   const removeImage = async (id: number) => {
     try {
       await deleteImage(id)
@@ -53,6 +63,7 @@ export function useImageStorage() {
     loading,
     error,
     addImage,
+    updateImageDescription,
     removeImage,
     refresh: loadImages
   }
