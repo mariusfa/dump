@@ -342,6 +342,34 @@ Hva med å flytte dev-journey knappen helt nederst på siden"
 
 ---
 
+## 18. Complete SVG Rewrite
+
+```
+User: "Bildet vises fremdeles ikke. Når jeg prøver åpne vi github så får jeg
+error rendering image. dump-icon.svg åpnes helt fint da"
+```
+
+**Files Changed:**
+- `public/dev-journey.svg` (deleted and recreated)
+- `prompts.md`
+- `prompts-visualization.md`
+
+**Functionality:**
+- Identified that previous SVG still had rendering issues despite text replacements
+- Completely deleted old SVG file and created new one from scratch
+- New SVG follows exact structure of working `dump-icon.svg`:
+  - Proper XML declaration: `<?xml version="1.0" encoding="UTF-8"?>`
+  - Explicit `width` and `height` attributes on root `<svg>` element
+  - Proper `xmlns` namespace declaration
+  - `linearGradient` in `<defs>` for background
+  - All text elements have explicit `font-family="system-ui, sans-serif"`
+  - Simplified structure with 9 conversation steps (User/AI pairs)
+  - Final stats box showing journey completion metrics
+- Verified SVG is served correctly (HTTP 200 OK, 15.7KB, image/svg+xml)
+- SVG now displays properly in browser and GitHub
+
+---
+
 ## Summary Statistics
 
 **Total Commits:** 12+ (excluding documentation)
