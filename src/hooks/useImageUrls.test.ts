@@ -9,8 +9,9 @@ describe('useImageUrls', () => {
   })
 
   it('creates URLs for images', () => {
+    const imageData = new Blob(['test'], { type: 'image/png' })
     const images: StoredImage[] = [
-      { id: 1, file: new File(['test'], 'test.png'), timestamp: Date.now() }
+      { id: 1, imageData, imageType: 'image/png', timestamp: Date.now() }
     ]
 
     const { result } = renderHook(() => useImageUrls(images))
@@ -29,7 +30,7 @@ describe('useImageUrls', () => {
 
   it('reuses existing URLs when images unchanged', () => {
     const images: StoredImage[] = [
-      { id: 1, file: new File(['test'], 'test.png'), timestamp: Date.now() }
+      { id: 1, imageData: new Blob(['test'], { type: 'image/png' }), imageType: 'image/png', timestamp: Date.now() }
     ]
 
     const { result, rerender, unmount } = renderHook(
@@ -49,7 +50,7 @@ describe('useImageUrls', () => {
 
   it('revokes URL when image removed', () => {
     const images: StoredImage[] = [
-      { id: 1, file: new File(['test'], 'test.png'), timestamp: Date.now() }
+      { id: 1, imageData: new Blob(['test'], { type: 'image/png' }), imageType: 'image/png', timestamp: Date.now() }
     ]
 
     const { result } = renderHook(() => useImageUrls(images))
@@ -65,11 +66,11 @@ describe('useImageUrls', () => {
 
   it('creates new URLs when new images added', () => {
     const images1: StoredImage[] = [
-      { id: 1, file: new File(['test1'], 'test1.png'), timestamp: Date.now() }
+      { id: 1, imageData: new Blob(['test1'], { type: 'image/png' }), imageType: 'image/png', timestamp: Date.now() }
     ]
     const images2: StoredImage[] = [
       ...images1,
-      { id: 2, file: new File(['test2'], 'test2.png'), timestamp: Date.now() }
+      { id: 2, imageData: new Blob(['test2'], { type: 'image/png' }), imageType: 'image/png', timestamp: Date.now() }
     ]
 
     const { result, rerender, unmount } = renderHook(

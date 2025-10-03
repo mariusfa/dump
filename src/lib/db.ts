@@ -1,10 +1,11 @@
 const DB_NAME = 'dump-app'
-const DB_VERSION = 1
+const DB_VERSION = 2
 const STORE_NAME = 'images'
 
 export interface StoredImage {
   id?: number
-  file: File
+  imageData: Blob
+  imageType: string
   timestamp: number
   description?: string
   audioBlob?: Blob

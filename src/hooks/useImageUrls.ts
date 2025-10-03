@@ -14,7 +14,7 @@ export function useImageUrls(images: StoredImage[]) {
         if (currentUrls.has(image.id)) {
           newUrls.set(image.id, currentUrls.get(image.id)!)
         } else {
-          const url = URL.createObjectURL(image.file)
+          const url = URL.createObjectURL(image.imageData)
           newUrls.set(image.id, url)
         }
       }

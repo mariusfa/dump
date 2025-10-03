@@ -16,7 +16,7 @@ describe('useImageStorage', () => {
 
   it('loads images on mount', async () => {
     const mockImages = [
-      { id: 1, file: new File(['test'], 'test.png'), timestamp: Date.now() }
+      { id: 1, imageData: new Blob(['test'], { type: 'image/png' }), imageType: 'image/png', timestamp: Date.now() }
     ]
     vi.mocked(db.getAllImages).mockResolvedValue(mockImages)
 
@@ -34,9 +34,9 @@ describe('useImageStorage', () => {
 
   it('sorts images by timestamp descending', async () => {
     const mockImages = [
-      { id: 1, file: new File(['test1'], 'test1.png'), timestamp: 1000 },
-      { id: 2, file: new File(['test2'], 'test2.png'), timestamp: 3000 },
-      { id: 3, file: new File(['test3'], 'test3.png'), timestamp: 2000 }
+      { id: 1, imageData: new Blob(['test1'], { type: 'image/png' }), imageType: 'image/png', timestamp: 1000 },
+      { id: 2, imageData: new Blob(['test2'], { type: 'image/png' }), imageType: 'image/png', timestamp: 3000 },
+      { id: 3, imageData: new Blob(['test3'], { type: 'image/png' }), imageType: 'image/png', timestamp: 2000 }
     ]
     vi.mocked(db.getAllImages).mockResolvedValue(mockImages)
 
@@ -62,8 +62,9 @@ describe('useImageStorage', () => {
     })
 
     const file = new File(['test'], 'test.png', { type: 'image/png' })
+    const imageData = new Blob(['test'], { type: 'image/png' })
     
-    const newImage = { id: 1, file, timestamp: Date.now() }
+    const newImage = { id: 1, imageData, imageType: 'image/png', timestamp: Date.now() }
     vi.mocked(db.getAllImages).mockResolvedValue([newImage])
 
     await result.current.addImage(file, 'Test description')
@@ -81,7 +82,7 @@ describe('useImageStorage', () => {
   })
 
   it('removes image successfully', async () => {
-    const mockImage = { id: 1, file: new File(['test'], 'test.png'), timestamp: Date.now() }
+    const mockImage = { id: 1, imageData: new Blob(['test'], { type: 'image/png' }), imageType: 'image/png', timestamp: Date.now() }
     vi.mocked(db.getAllImages).mockResolvedValue([mockImage])
     vi.mocked(db.deleteImage).mockResolvedValue()
 
@@ -124,7 +125,7 @@ describe('useImageStorage', () => {
       expect(result.current.loading).toBe(false)
     })
 
-    const newImage = { id: 1, file: new File(['test'], 'test.png'), timestamp: Date.now() }
+    const newImage = { id: 1, imageData: new Blob(['test'], { type: 'image/png' }), imageType: 'image/png', timestamp: Date.now() }
     vi.mocked(db.getAllImages).mockResolvedValue([newImage])
 
     await result.current.refresh()

@@ -31,8 +31,10 @@ describe('IndexedDB utilities', () => {
 
   it('saves image to database', async () => {
     const file = new File(['test'], 'test.png', { type: 'image/png' })
+    const imageData = new Blob([await file.arrayBuffer()], { type: file.type })
     const image: Omit<StoredImage, 'id'> = {
-      file,
+      imageData,
+      imageType: file.type,
       timestamp: Date.now()
     }
 
@@ -44,22 +46,25 @@ describe('IndexedDB utilities', () => {
   it('retrieves all images from database', async () => {
     const file1 = new File(['test1'], 'test1.png', { type: 'image/png' })
     const file2 = new File(['test2'], 'test2.png', { type: 'image/png' })
+    const imageData1 = new Blob([await file1.arrayBuffer()], { type: file1.type })
+    const imageData2 = new Blob([await file2.arrayBuffer()], { type: file2.type })
 
     const imagesBefore = await getAllImages()
     const countBefore = imagesBefore.length
 
-    await saveImage({ file: file1, timestamp: Date.now() })
-    await saveImage({ file: file2, timestamp: Date.now() })
+    await saveImage({ imageData: imageData1, imageType: file1.type, timestamp: Date.now() })
+    await saveImage({ imageData: imageData2, imageType: file2.type, timestamp: Date.now() })
 
     const imagesAfter = await getAllImages()
     expect(imagesAfter.length).toBe(countBefore + 2)
-    expect(imagesAfter[countBefore].file).toBeDefined()
-    expect(imagesAfter[countBefore + 1].file).toBeDefined()
+    expect(imagesAfter[countBefore].imageData).toBeDefined()
+    expect(imagesAfter[countBefore + 1].imageData).toBeDefined()
   })
 
   it('deletes image from database', async () => {
     const file = new File(['test'], 'test.png', { type: 'image/png' })
-    const id = await saveImage({ file, timestamp: Date.now() })
+    const imageData = new Blob([await file.arrayBuffer()], { type: file.type })
+    const id = await saveImage({ imageData, imageType: file.type, timestamp: Date.now() })
 
     const imagesBefore = await getAllImages()
     const countBefore = imagesBefore.length
@@ -72,8 +77,10 @@ describe('IndexedDB utilities', () => {
 
   it('saves image with description', async () => {
     const file = new File(['test'], 'test.png', { type: 'image/png' })
+    const imageData = new Blob([await file.arrayBuffer()], { type: file.type })
     const image: Omit<StoredImage, 'id'> = {
-      file,
+      imageData,
+      imageType: file.type,
       timestamp: Date.now(),
       description: 'Test description'
     }
@@ -88,7 +95,8 @@ describe('IndexedDB utilities', () => {
 
   it('updates image description', async () => {
     const file = new File(['test'], 'test.png', { type: 'image/png' })
-    const id = await saveImage({ file, timestamp: Date.now() })
+    const imageData = new Blob([await file.arrayBuffer()], { type: file.type })
+    const id = await saveImage({ imageData, imageType: file.type, timestamp: Date.now() })
 
     await updateImage(id, { description: 'Updated description' })
 

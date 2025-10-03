@@ -25,8 +25,12 @@ export function useImageStorage() {
 
   const addImage = async (file: File, description?: string) => {
     try {
+      // Convert File to Blob for proper IndexedDB storage
+      const imageData = new Blob([await file.arrayBuffer()], { type: file.type })
+      
       const id = await saveImage({
-        file,
+        imageData,
+        imageType: file.type,
         timestamp: Date.now(),
         description
       })
