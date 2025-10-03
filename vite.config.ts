@@ -32,5 +32,10 @@ export default defineConfig({
   server: {
     host: '0.0.0.0',
     allowedHosts: ['.gitpod.dev']
+  },
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    setupFiles: './src/test/setup.ts',
   }
 })
