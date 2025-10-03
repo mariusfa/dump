@@ -405,9 +405,60 @@ User: "Option C" (Edit on card - add description later)
 
 ---
 
+## 20. Center App Layout
+
+```
+User: "Jeg ser at hele appen er litt til venstre, og ikke midtstilt. 
+Kan du sentrere hele appen for meg"
+```
+
+**Files Changed:**
+- `src/index.css`
+
+**Functionality:**
+- Removed `display: flex` and `place-items: center` from body element
+- Added `width: 100%` to `#root` div
+- App now properly centered with `margin: 0 auto` on `.app` class
+- Fixed alignment issue where content appeared left-aligned
+
+---
+
+## 21. Update Dev Journey SVG
+
+```
+User: "Når du oppdaterer documentation files så skal du også oppdatere dev journey svg fra nå. 
+Finn ut av hva som mangler i svg fila nå"
+User: "ja" (update SVG with missing steps)
+```
+
+**Files Changed:**
+- `public/dev-journey.svg`
+- `prompts.md`
+- `prompts-visualization.md`
+
+**Functionality:**
+- Expanded SVG visualization from 9 steps to 15 steps
+- Increased SVG height from 1400px to 2400px
+- Added 6 missing development steps:
+  - Step 10: Documentation (prompts.md)
+  - Step 11: Dev Journey visualization
+  - Step 12: Fix SVG rendering issues (3 attempts)
+  - Step 13: Text descriptions feature
+  - Step 14: Center layout fix
+  - Step 15: Update SVG with all steps (recursive!)
+- Updated final statistics box:
+  - 11 commits → 14+ commits
+  - 30+ tests → 40+ tests
+  - 9 steps → 15 steps
+  - Added "15+ major features" and "Text descriptions"
+- Updated subtitle from "gradient glassmorphism" to "full-featured memory app"
+- Established process: Always update SVG when updating documentation
+
+---
+
 ## Summary Statistics
 
-**Total Commits:** 13+ (excluding documentation)
+**Total Commits:** 14+ (excluding documentation)
 **Total Files Created:** 22+
 **Total Tests:** 40+
 **Lines of Code:** ~2400+
@@ -419,8 +470,10 @@ User: "Option C" (Edit on card - add description later)
 4. ✅ IndexedDB persistent storage
 5. ✅ Component architecture refactoring
 6. ✅ Modern gradient design with animations
-7. ✅ Text descriptions for images
-8. ✅ Complete documentation
+7. ✅ Interactive development journey visualization
+8. ✅ Text descriptions for images
+9. ✅ Centered layout
+10. ✅ Complete documentation with auto-updating SVG
 
 **Tech Stack:**
 - React 19 + TypeScript

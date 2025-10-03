@@ -324,6 +324,44 @@ Suggested:
 
 ---
 
+## Center App Layout
+
+**User:** Jeg ser at hele appen er litt til venstre, og ikke midtstilt. Kan du sentrere hele appen for meg
+
+**Actions taken:**
+- Removed `display: flex` and `place-items: center` from body element
+- Added `width: 100%` to `#root` div
+- App now properly centered with `margin: 0 auto` on `.app` class
+- Build ✓
+
+---
+
+## Update Dev Journey SVG
+
+**User:** Når du oppdaterer documentation files så skal du også oppdatere dev journey svg fra nå. Finn ut av hva som mangler i svg fila nå
+
+**User:** ja (update SVG with missing steps)
+
+**Actions taken:**
+- Expanded SVG from 9 steps to 15 steps
+- Increased SVG height from 1400px to 2400px
+- Added missing steps:
+  - Step 10: Documentation (prompts.md)
+  - Step 11: Dev Journey visualization
+  - Step 12: Fix SVG rendering issues
+  - Step 13: Text descriptions feature
+  - Step 14: Center layout fix
+  - Step 15: Update SVG with all steps (meta!)
+- Updated final stats:
+  - 11 commits → 14+ commits
+  - 30+ tests → 40+ tests
+  - 9 steps → 15 steps
+  - Added "15+ major features" and "Text descriptions"
+- Updated subtitle from "From idea to gradient glassmorphism" to "From idea to full-featured memory app"
+- Build ✓
+
+---
+
 ## Summary
 
 The DUMP app was built through iterative development with focus on:
