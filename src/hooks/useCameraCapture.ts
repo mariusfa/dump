@@ -1,4 +1,4 @@
-import { useRef, ChangeEvent } from 'react'
+import { useRef, type ChangeEvent } from 'react'
 
 export function useCameraCapture() {
   const fileInputRef = useRef<HTMLInputElement>(null)

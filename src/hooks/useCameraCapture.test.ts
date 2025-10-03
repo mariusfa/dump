@@ -1,5 +1,6 @@
 import { describe, it, expect, vi } from 'vitest'
 import { renderHook, act } from '@testing-library/react'
+import { type ChangeEvent } from 'react'
 import { useCameraCapture } from './useCameraCapture'
 
 describe('useCameraCapture', () => {
@@ -17,7 +18,7 @@ describe('useCameraCapture', () => {
     const mockClick = vi.fn()
     result.current.fileInputRef.current = {
       click: mockClick
-    } as any
+    } as HTMLInputElement
     
     act(() => {
       result.current.openCamera()
@@ -35,7 +36,7 @@ describe('useCameraCapture', () => {
       target: {
         files: [file]
       }
-    } as any
+    } as ChangeEvent<HTMLInputElement>
     
     let capturedFile: File | null = null
     act(() => {
@@ -53,7 +54,7 @@ describe('useCameraCapture', () => {
       target: {
         files: []
       }
-    } as any
+    } as ChangeEvent<HTMLInputElement>
     
     let capturedFile: File | null | undefined
     act(() => {
