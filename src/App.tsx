@@ -1,20 +1,8 @@
-import { useRef } from 'react'
 import './App.css'
+import { useCameraCapture } from './hooks/useCameraCapture'
 
 function App() {
-  const fileInputRef = useRef<HTMLInputElement>(null)
-
-  const handleCameraClick = () => {
-    fileInputRef.current?.click()
-  }
-
-  const handleImageCapture = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0]
-    if (file) {
-      console.log('Bilde tatt:', file)
-      // TODO: Lagre bilde i IndexedDB
-    }
-  }
+  const { fileInputRef, openCamera, handleCapture } = useCameraCapture()
 
   return (
     <div className="app">
@@ -23,7 +11,7 @@ function App() {
       </header>
       <main>
         <p>Ta bilder av det du skal huske</p>
-        <button onClick={handleCameraClick} className="camera-button">
+        <button onClick={openCamera} className="camera-button">
           📷 Åpne kamera
         </button>
         <input
@@ -31,7 +19,7 @@ function App() {
           type="file"
           accept="image/*"
           capture="environment"
-          onChange={handleImageCapture}
+          onChange={handleCapture}
           style={{ display: 'none' }}
         />
       </main>
