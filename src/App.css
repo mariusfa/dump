@@ -3,6 +3,8 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  position: relative;
+  z-index: 2;
 }
 
 header {
@@ -14,11 +16,15 @@ h1 {
   margin: 0;
   font-weight: 900;
   letter-spacing: 0.1em;
+  background: linear-gradient(135deg, #fff 0%, #f5b8d0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .subtitle {
   font-size: 0.9rem;
-  color: #888;
+  color: rgba(255, 255, 255, 0.6);
   margin-top: 0.5rem;
   font-style: italic;
 }
@@ -27,28 +33,38 @@ main {
   padding: 2rem;
 }
 
+main > p {
+  color: rgba(255, 255, 255, 0.8);
+}
+
 .camera-button {
   font-size: 1.2rem;
   padding: 1rem 2rem;
-  background-color: #646cff;
+  background: linear-gradient(135deg, rgba(212, 117, 143, 0.3) 0%, rgba(74, 37, 69, 0.3) 100%);
+  backdrop-filter: blur(20px);
   color: white;
-  border: none;
-  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
   cursor: pointer;
   margin-top: 1rem;
   margin-bottom: 2rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
 }
 
 .camera-button:hover {
-  background-color: #535bf2;
+  background: linear-gradient(135deg, rgba(212, 117, 143, 0.4) 0%, rgba(74, 37, 69, 0.4) 100%);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
 }
 
 .camera-button:active {
-  transform: scale(0.98);
+  transform: translateY(0);
 }
 
 .empty-state {
-  color: #888;
+  color: rgba(255, 255, 255, 0.5);
   margin-top: 2rem;
 }
 
@@ -60,10 +76,19 @@ main {
 }
 
 .image-card {
-  background: #1a1a1a;
-  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.image-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.4);
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
 .image-card img {
@@ -78,25 +103,30 @@ main {
   justify-content: space-between;
   align-items: center;
   padding: 0.75rem;
+  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
 }
 
 .image-date {
   font-size: 0.9rem;
-  color: #888;
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .delete-button {
-  background: transparent;
-  border: none;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
   font-size: 1.2rem;
   cursor: pointer;
-  padding: 0.25rem;
-  opacity: 0.7;
-  transition: opacity 0.2s;
+  padding: 0.25rem 0.5rem;
+  opacity: 0.8;
+  transition: all 0.2s ease;
 }
 
 .delete-button:hover {
   opacity: 1;
+  background: rgba(255, 255, 255, 0.15);
+  transform: scale(1.1);
 }
 
 @media (max-width: 768px) {

@@ -3,23 +3,31 @@
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color-scheme: dark;
+  color: rgba(255, 255, 255, 0.95);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  /* Gradient color palette */
+  --gradient-start: #1a1a2e;
+  --gradient-mid-1: #2d1b3d;
+  --gradient-mid-2: #4a2545;
+  --gradient-end: #d4758f;
+  --grid-line: rgba(255, 255, 255, 0.08);
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.1);
 }
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: #e8a0bf;
   text-decoration: inherit;
 }
 a:hover {
-  color: #535bf2;
+  color: #f5b8d0;
 }
 
 body {
@@ -28,6 +36,45 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  background: linear-gradient(
+    180deg,
+    var(--gradient-start) 0%,
+    var(--gradient-mid-1) 30%,
+    var(--gradient-mid-2) 60%,
+    var(--gradient-end) 100%
+  );
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Animated grid lines */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent calc(100% / 7 - 1px),
+      var(--grid-line) calc(100% / 7 - 1px),
+      var(--grid-line) calc(100% / 7)
+    );
+  pointer-events: none;
+  z-index: 1;
+  animation: gridPulse 4s ease-in-out infinite;
+}
+
+@keyframes gridPulse {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.6;
+  }
 }
 
 h1 {
@@ -37,32 +84,24 @@ h1 {
 
 button {
   border-radius: 8px;
-  border: 1px solid transparent;
+  border: 1px solid var(--glass-border);
   padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: var(--glass-bg);
+  backdrop-filter: blur(10px);
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: all 0.3s ease;
+  color: rgba(255, 255, 255, 0.9);
 }
 button:hover {
-  border-color: #646cff;
+  border-color: rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: translateY(-1px);
 }
 button:focus,
 button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+  outline: 2px solid rgba(255, 255, 255, 0.3);
+  outline-offset: 2px;
 }
