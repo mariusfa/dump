@@ -17,3 +17,22 @@ h1 {
 main {
   padding: 2rem;
 }
+
+.camera-button {
+  font-size: 1.2rem;
+  padding: 1rem 2rem;
+  background-color: #646cff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+.camera-button:hover {
+  background-color: #535bf2;
+}
+
+.camera-button:active {
+  transform: scale(0.98);
+}
