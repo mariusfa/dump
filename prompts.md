@@ -258,11 +258,23 @@ Suggested:
 
 **User:** Fra image copy.png ser du at knappen havnet over logoen. Der er litt dumt. Og fra image copy 2.png ser man at det ikke vises noen svg
 
-**Actions taken:**
+**Actions taken (attempt 1):**
 - Fixed Dev Journey button positioning (moved to top-right of header, not overlapping logo)
 - Fixed SVG not displaying by converting inline style to proper SVG gradient definition
 - Changed from `style="background: linear-gradient(...)"` to `<linearGradient>` in defs
 - Added background rect with gradient fill
+
+---
+
+**User:** Samme feil med visning av svg. "broken image" eller hva enn chrome prøver å vise. Hva med å flytte dev-journey knappen helt nederst på siden
+
+**Actions taken:**
+- Fixed SVG rendering by replacing emoji icons (👤🤖) with text letters (U/AI)
+- Emojis in SVG text elements don't render properly in all browsers
+- Moved Dev Journey button to fixed position at bottom-right of page
+- Styled as floating action button with pink glassmorphism
+- Button now has pill shape (border-radius: 50px) and shadow
+- Removed button from header completely
 
 ---
 

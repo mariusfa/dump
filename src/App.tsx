@@ -30,13 +30,6 @@ function App() {
       <header>
         <h1>DUMP</h1>
         <p className="subtitle">Digital Unorganized Memory Pile</p>
-        <button 
-          onClick={() => setShowDevJourney(true)} 
-          className="dev-journey-button"
-          title="View development journey"
-        >
-          📊 Dev Journey
-        </button>
       </header>
       <main>
         <p>Ta bilder av det du skal huske</p>
@@ -57,6 +50,14 @@ function App() {
           />
         )}
       </main>
+
+      <button 
+        onClick={() => setShowDevJourney(true)} 
+        className="dev-journey-button"
+        title="View development journey"
+      >
+        📊 Dev Journey
+      </button>
 
       {showDevJourney && <DevJourney onClose={() => setShowDevJourney(false)} />}
     </div>

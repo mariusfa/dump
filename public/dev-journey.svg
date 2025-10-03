@@ -9,12 +9,16 @@
     </linearGradient>
     
     <!-- User avatar -->
-    <circle id="user-avatar" r="20" fill="#646cff" stroke="#fff" stroke-width="2"/>
-    <text id="user-icon" font-size="24" fill="#fff" text-anchor="middle" dy="8">👤</text>
+    <g id="user-avatar">
+      <circle r="20" fill="#646cff" stroke="#fff" stroke-width="2"/>
+      <text font-size="16" fill="#fff" text-anchor="middle" dy="5" font-weight="bold">U</text>
+    </g>
     
     <!-- AI avatar -->
-    <circle id="ai-avatar" r="20" fill="#d4758f" stroke="#fff" stroke-width="2"/>
-    <text id="ai-icon" font-size="24" fill="#fff" text-anchor="middle" dy="8">🤖</text>
+    <g id="ai-avatar">
+      <circle r="20" fill="#d4758f" stroke="#fff" stroke-width="2"/>
+      <text font-size="16" fill="#fff" text-anchor="middle" dy="5" font-weight="bold">AI</text>
+    </g>
     
     <!-- Glass card style -->
     <filter id="glass-blur">
@@ -36,7 +40,7 @@
   <!-- Step 1: Initial Discussion -->
   <g transform="translate(100, 120)">
     <use href="#user-avatar" x="0" y="0"/>
-    <use href="#user-icon" x="0" y="0"/>
+    
     <rect x="40" y="-25" width="300" height="50" rx="8" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.1)"/>
     <text x="50" y="-5" font-size="12" fill="#fff" font-weight="600">Tech stack discussion</text>
     <text x="50" y="10" font-size="10" fill="rgba(255,255,255,0.7)">React + PWA + IndexedDB?</text>
@@ -46,7 +50,7 @@
   
   <g transform="translate(660, 180)">
     <use href="#ai-avatar" x="0" y="0"/>
-    <use href="#ai-icon" x="0" y="0"/>
+    
     <rect x="-340" y="-25" width="300" height="50" rx="8" fill="rgba(212,117,143,0.1)" stroke="rgba(255,255,255,0.1)"/>
     <text x="-330" y="-5" font-size="12" fill="#fff" font-weight="600">Recommended stack</text>
     <text x="-330" y="10" font-size="10" fill="rgba(255,255,255,0.7)">Frontend-only approach</text>
@@ -57,7 +61,7 @@
   
   <g transform="translate(100, 240)">
     <use href="#user-avatar" x="0" y="0"/>
-    <use href="#user-icon" x="0" y="0"/>
+    
     <rect x="40" y="-25" width="300" height="50" rx="8" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.1)"/>
     <text x="50" y="-5" font-size="12" fill="#fff" font-weight="600">Setup with Vite</text>
     <text x="50" y="10" font-size="10" fill="rgba(255,255,255,0.7)">Create React app</text>
@@ -67,7 +71,7 @@
   
   <g transform="translate(660, 300)">
     <use href="#ai-avatar" x="0" y="0"/>
-    <use href="#ai-icon" x="0" y="0"/>
+    
     <rect x="-340" y="-25" width="300" height="50" rx="8" fill="rgba(212,117,143,0.1)" stroke="rgba(255,255,255,0.1)"/>
     <text x="-330" y="-5" font-size="12" fill="#fff" font-weight="600">✓ Vite + React + TS</text>
     <text x="-330" y="10" font-size="10" fill="rgba(255,255,255,0.7)">18 files created</text>
@@ -78,7 +82,7 @@
   
   <g transform="translate(100, 360)">
     <use href="#user-avatar" x="0" y="0"/>
-    <use href="#user-icon" x="0" y="0"/>
+    
     <rect x="40" y="-25" width="300" height="50" rx="8" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.1)"/>
     <text x="50" y="-5" font-size="12" fill="#fff" font-weight="600">Add camera button</text>
     <text x="50" y="10" font-size="10" fill="rgba(255,255,255,0.7)">Rear camera support</text>
@@ -88,7 +92,7 @@
   
   <g transform="translate(660, 420)">
     <use href="#ai-avatar" x="0" y="0"/>
-    <use href="#ai-icon" x="0" y="0"/>
+    
     <rect x="-340" y="-25" width="300" height="50" rx="8" fill="rgba(212,117,143,0.1)" stroke="rgba(255,255,255,0.1)"/>
     <text x="-330" y="-5" font-size="12" fill="#fff" font-weight="600">✓ 📷 Camera implemented</text>
     <text x="-330" y="10" font-size="10" fill="rgba(255,255,255,0.7)">capture="environment"</text>
@@ -99,7 +103,7 @@
   
   <g transform="translate(100, 480)">
     <use href="#user-avatar" x="0" y="0"/>
-    <use href="#user-icon" x="0" y="0"/>
+    
     <rect x="40" y="-25" width="300" height="50" rx="8" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.1)"/>
     <text x="50" y="-5" font-size="12" fill="#fff" font-weight="600">Setup testing</text>
     <text x="50" y="10" font-size="10" fill="rgba(255,255,255,0.7)">Vitest + RTL</text>
@@ -109,7 +113,7 @@
   
   <g transform="translate(660, 540)">
     <use href="#ai-avatar" x="0" y="0"/>
-    <use href="#ai-icon" x="0" y="0"/>
+    
     <rect x="-340" y="-25" width="300" height="50" rx="8" fill="rgba(212,117,143,0.1)" stroke="rgba(255,255,255,0.1)"/>
     <text x="-330" y="-5" font-size="12" fill="#fff" font-weight="600">✓ 5 tests passing</text>
     <text x="-330" y="10" font-size="10" fill="rgba(255,255,255,0.7)">Vitest configured</text>
@@ -120,7 +124,7 @@
   
   <g transform="translate(100, 600)">
     <use href="#user-avatar" x="0" y="0"/>
-    <use href="#user-icon" x="0" y="0"/>
+    
     <rect x="40" y="-25" width="300" height="50" rx="8" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.1)"/>
     <text x="50" y="-5" font-size="12" fill="#fff" font-weight="600">Extract to hook</text>
     <text x="50" y="10" font-size="10" fill="rgba(255,255,255,0.7)">Better testability</text>
@@ -130,7 +134,7 @@
   
   <g transform="translate(660, 660)">
     <use href="#ai-avatar" x="0" y="0"/>
-    <use href="#ai-icon" x="0" y="0"/>
+    
     <rect x="-340" y="-25" width="300" height="50" rx="8" fill="rgba(212,117,143,0.1)" stroke="rgba(255,255,255,0.1)"/>
     <text x="-330" y="-5" font-size="12" fill="#fff" font-weight="600">✓ useCameraCapture</text>
     <text x="-330" y="10" font-size="10" fill="rgba(255,255,255,0.7)">9 tests passing</text>
@@ -141,7 +145,7 @@
   
   <g transform="translate(100, 720)">
     <use href="#user-avatar" x="0" y="0"/>
-    <use href="#user-icon" x="0" y="0"/>
+    
     <rect x="40" y="-25" width="300" height="50" rx="8" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.1)"/>
     <text x="50" y="-5" font-size="12" fill="#fff" font-weight="600">Add storage</text>
     <text x="50" y="10" font-size="10" fill="rgba(255,255,255,0.7)">IndexedDB for images</text>
@@ -151,7 +155,7 @@
   
   <g transform="translate(660, 780)">
     <use href="#ai-avatar" x="0" y="0"/>
-    <use href="#ai-icon" x="0" y="0"/>
+    
     <rect x="-340" y="-25" width="300" height="50" rx="8" fill="rgba(212,117,143,0.1)" stroke="rgba(255,255,255,0.1)"/>
     <text x="-330" y="-5" font-size="12" fill="#fff" font-weight="600">✓ 💾 Persistent storage</text>
     <text x="-330" y="10" font-size="10" fill="rgba(255,255,255,0.7)">22 tests passing</text>
@@ -162,7 +166,7 @@
   
   <g transform="translate(100, 840)">
     <use href="#user-avatar" x="0" y="0"/>
-    <use href="#user-icon" x="0" y="0"/>
+    
     <rect x="40" y="-25" width="300" height="50" rx="8" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.1)"/>
     <text x="50" y="-5" font-size="12" fill="#fff" font-weight="600">Rename to DUMP</text>
     <text x="50" y="10" font-size="10" fill="rgba(255,255,255,0.7)">+ cool icon</text>
@@ -172,7 +176,7 @@
   
   <g transform="translate(660, 900)">
     <use href="#ai-avatar" x="0" y="0"/>
-    <use href="#ai-icon" x="0" y="0"/>
+    
     <rect x="-340" y="-25" width="300" height="50" rx="8" fill="rgba(212,117,143,0.1)" stroke="rgba(255,255,255,0.1)"/>
     <text x="-330" y="-5" font-size="12" fill="#fff" font-weight="600">✓ 🗑️ DUMP branding</text>
     <text x="-330" y="10" font-size="10" fill="rgba(255,255,255,0.7)">Custom SVG icon</text>
@@ -183,7 +187,7 @@
   
   <g transform="translate(100, 960)">
     <use href="#user-avatar" x="0" y="0"/>
-    <use href="#user-icon" x="0" y="0"/>
+    
     <rect x="40" y="-25" width="300" height="50" rx="8" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.1)"/>
     <text x="50" y="-5" font-size="12" fill="#fff" font-weight="600">Refactor components</text>
     <text x="50" y="10" font-size="10" fill="rgba(255,255,255,0.7)">Extract & cleanup</text>
@@ -193,7 +197,7 @@
   
   <g transform="translate(660, 1020)">
     <use href="#ai-avatar" x="0" y="0"/>
-    <use href="#ai-icon" x="0" y="0"/>
+    
     <rect x="-340" y="-25" width="300" height="50" rx="8" fill="rgba(212,117,143,0.1)" stroke="rgba(255,255,255,0.1)"/>
     <text x="-330" y="-5" font-size="12" fill="#fff" font-weight="600">✓ 5 components + hook</text>
     <text x="-330" y="10" font-size="10" fill="rgba(255,255,255,0.7)">Fixed memory leak</text>
@@ -204,7 +208,7 @@
   
   <g transform="translate(100, 1080)">
     <use href="#user-avatar" x="0" y="0"/>
-    <use href="#user-icon" x="0" y="0"/>
+    
     <rect x="40" y="-25" width="300" height="50" rx="8" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.1)"/>
     <text x="50" y="-5" font-size="12" fill="#fff" font-weight="600">Gradient design</text>
     <text x="50" y="10" font-size="10" fill="rgba(255,255,255,0.7)">Animated grid lines</text>
@@ -214,7 +218,7 @@
   
   <g transform="translate(660, 1140)">
     <use href="#ai-avatar" x="0" y="0"/>
-    <use href="#ai-icon" x="0" y="0"/>
+    
     <rect x="-340" y="-25" width="300" height="50" rx="8" fill="rgba(212,117,143,0.1)" stroke="rgba(255,255,255,0.1)"/>
     <text x="-330" y="-5" font-size="12" fill="#fff" font-weight="600">✓ ✨ Glassmorphism</text>
     <text x="-330" y="10" font-size="10" fill="rgba(255,255,255,0.7)">Animated grid + blur</text>

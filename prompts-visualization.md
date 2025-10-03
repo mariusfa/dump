@@ -318,6 +318,30 @@ Og fra image copy 2.png ser man at det ikke vises noen svg"
 
 ---
 
+## 17. Fix SVG Rendering and Move Button
+
+```
+User: "Samme feil med visning av svg. 'broken image' eller hva enn chrome prøver å vise.
+Hva med å flytte dev-journey knappen helt nederst på siden"
+```
+
+**Files Changed:**
+- `public/dev-journey.svg`
+- `src/App.tsx`
+- `src/App.css`
+- `prompts.md`
+- `prompts-visualization.md`
+
+**Functionality:**
+- Fixed SVG rendering by replacing emoji text (👤🤖) with letter text (U/AI)
+- Emojis in SVG `<text>` elements don't render in all browsers
+- Moved button to fixed bottom-right position (floating action button)
+- Styled as pill-shaped button with pink glassmorphism
+- Added shadow and hover lift effect
+- Removed button from header completely
+
+---
+
 ## Summary Statistics
 
 **Total Commits:** 12+ (excluding documentation)
