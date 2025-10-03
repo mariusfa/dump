@@ -1,30 +1,51 @@
-import { describe, it, expect } from 'vitest'
-import { render, screen } from '@testing-library/react'
+import { describe, it, expect, beforeEach } from 'vitest'
+import { render, screen, waitFor } from '@testing-library/react'
+import 'fake-indexeddb/auto'
 import App from './App'
 
+beforeEach(() => {
+  indexedDB.deleteDatabase('huskeapp')
+})
+
 describe('App', () => {
-  it('renders heading', () => {
+  it('renders heading', async () => {
     render(<App />)
-    expect(screen.getByRole('heading', { name: /huskeapp/i })).toBeInTheDocument()
+    await waitFor(() => {
+      expect(screen.getByRole('heading', { name: /huskeapp/i })).toBeInTheDocument()
+    })
   })
 
-  it('renders description text', () => {
+  it('renders description text', async () => {
     render(<App />)
-    expect(screen.getByText(/ta bilder av det du skal huske/i)).toBeInTheDocument()
+    await waitFor(() => {
+      expect(screen.getByText(/ta bilder av det du skal huske/i)).toBeInTheDocument()
+    })
   })
 
-  it('renders camera button', () => {
+  it('renders camera button', async () => {
     render(<App />)
-    expect(screen.getByRole('button', { name: /åpne kamera/i })).toBeInTheDocument()
+    await waitFor(() => {
+      expect(screen.getByRole('button', { name: /åpne kamera/i })).toBeInTheDocument()
+    })
   })
 
-  it('renders file input with correct attributes', () => {
+  it('renders file input with correct attributes', async () => {
     render(<App />)
     
-    const fileInput = document.querySelector('input[type="file"]') as HTMLInputElement
+    await waitFor(() => {
+      const fileInput = document.querySelector('input[type="file"]') as HTMLInputElement
+      
+      expect(fileInput).toBeInTheDocument()
+      expect(fileInput).toHaveAttribute('accept', 'image/*')
+      expect(fileInput).toHaveAttribute('capture', 'environment')
+    })
+  })
+
+  it('shows empty state when no images', async () => {
+    render(<App />)
     
-    expect(fileInput).toBeInTheDocument()
-    expect(fileInput).toHaveAttribute('accept', 'image/*')
-    expect(fileInput).toHaveAttribute('capture', 'environment')
+    await waitFor(() => {
+      expect(screen.getByText(/ingen bilder ennå/i)).toBeInTheDocument()
+    })
   })
 })

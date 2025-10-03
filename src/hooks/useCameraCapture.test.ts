@@ -18,7 +18,7 @@ describe('useCameraCapture', () => {
     const mockClick = vi.fn()
     result.current.fileInputRef.current = {
       click: mockClick
-    } as HTMLInputElement
+    } as unknown as HTMLInputElement
     
     act(() => {
       result.current.openCamera()
@@ -27,41 +27,57 @@ describe('useCameraCapture', () => {
     expect(mockClick).toHaveBeenCalled()
   })
 
-  it('handleCapture returns file when file is selected', () => {
+  it('handleCapture returns file when file is selected', async () => {
     const { result } = renderHook(() => useCameraCapture())
-    const consoleSpy = vi.spyOn(console, 'log')
     
     const file = new File(['dummy content'], 'test.png', { type: 'image/png' })
     const event = {
       target: {
         files: [file]
       }
-    } as ChangeEvent<HTMLInputElement>
+    } as unknown as ChangeEvent<HTMLInputElement>
     
     let capturedFile: File | null = null
-    act(() => {
-      capturedFile = result.current.handleCapture(event)
+    await act(async () => {
+      capturedFile = await result.current.handleCapture(event)
     })
     
     expect(capturedFile).toBe(file)
-    expect(consoleSpy).toHaveBeenCalledWith('Bilde tatt:', file)
   })
 
-  it('handleCapture returns null when no file is selected', () => {
+  it('handleCapture returns null when no file is selected', async () => {
     const { result } = renderHook(() => useCameraCapture())
     
     const event = {
       target: {
         files: []
       }
-    } as ChangeEvent<HTMLInputElement>
+    } as unknown as ChangeEvent<HTMLInputElement>
     
     let capturedFile: File | null | undefined
-    act(() => {
-      capturedFile = result.current.handleCapture(event)
+    await act(async () => {
+      capturedFile = await result.current.handleCapture(event)
     })
     
     expect(capturedFile).toBeNull()
+  })
+
+  it('calls onCapture callback when provided', async () => {
+    const onCapture = vi.fn()
+    const { result } = renderHook(() => useCameraCapture({ onCapture }))
+    
+    const file = new File(['dummy content'], 'test.png', { type: 'image/png' })
+    const event = {
+      target: {
+        files: [file]
+      }
+    } as unknown as ChangeEvent<HTMLInputElement>
+    
+    await act(async () => {
+      await result.current.handleCapture(event)
+    })
+    
+    expect(onCapture).toHaveBeenCalledWith(file)
   })
 
   it('openCamera does nothing when ref is not set', () => {
