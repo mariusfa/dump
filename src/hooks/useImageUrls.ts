@@ -10,12 +10,16 @@ export function useImageUrls(images: StoredImage[]) {
     const newUrls = new Map<number, string>()
 
     images.forEach((image) => {
-      if (image.id) {
+      if (image.id && image.imageData) {
         if (currentUrls.has(image.id)) {
           newUrls.set(image.id, currentUrls.get(image.id)!)
         } else {
-          const url = URL.createObjectURL(image.imageData)
-          newUrls.set(image.id, url)
+          try {
+            const url = URL.createObjectURL(image.imageData)
+            newUrls.set(image.id, url)
+          } catch (err) {
+            console.error('Failed to create URL for image', image.id, err)
+          }
         }
       }
     })

@@ -20,6 +20,7 @@ export function openDB(): Promise<IDBDatabase> {
 
     request.onupgradeneeded = (event) => {
       const db = (event.target as IDBOpenDBRequest).result
+      const oldVersion = event.oldVersion
       
       if (!db.objectStoreNames.contains(STORE_NAME)) {
         const store = db.createObjectStore(STORE_NAME, { 
@@ -27,6 +28,11 @@ export function openDB(): Promise<IDBDatabase> {
           autoIncrement: true 
         })
         store.createIndex('timestamp', 'timestamp', { unique: false })
+      } else if (oldVersion < 2) {
+        // Migration from v1 to v2: Clear old data with File objects
+        const transaction = (event.target as IDBOpenDBRequest).transaction!
+        const store = transaction.objectStore(STORE_NAME)
+        store.clear()
       }
     }
   })
