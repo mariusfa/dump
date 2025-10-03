@@ -36,7 +36,8 @@ function App() {
   return (
     <div className="app">
       <header>
-        <h1>Huskeapp</h1>
+        <h1>DUMP</h1>
+        <p className="subtitle">Digital Unorganized Memory Pile</p>
       </header>
       <main>
         <p>Ta bilder av det du skal huske</p>

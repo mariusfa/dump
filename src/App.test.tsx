@@ -4,14 +4,14 @@ import 'fake-indexeddb/auto'
 import App from './App'
 
 beforeEach(() => {
-  indexedDB.deleteDatabase('huskeapp')
+  indexedDB.deleteDatabase('dump-app')
 })
 
 describe('App', () => {
   it('renders heading', async () => {
     render(<App />)
     await waitFor(() => {
-      expect(screen.getByRole('heading', { name: /huskeapp/i })).toBeInTheDocument()
+      expect(screen.getByRole('heading', { name: /dump/i })).toBeInTheDocument()
     })
   })
 

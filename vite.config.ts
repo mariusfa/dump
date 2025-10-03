@@ -8,22 +8,26 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['favicon.ico'],
+      includeAssets: ['dump-icon.svg'],
       manifest: {
-        name: 'Huskeapp',
-        short_name: 'Huskeapp',
-        description: 'Ta bilder av det du skal huske',
-        theme_color: '#ffffff',
+        name: 'DUMP - Digital Unorganized Memory Pile',
+        short_name: 'DUMP',
+        description: 'Ta bilder av det du skal huske - Digital Unorganized Memory Pile',
+        theme_color: '#646cff',
+        background_color: '#242424',
+        display: 'standalone',
         icons: [
           {
-            src: 'pwa-192x192.png',
+            src: 'dump-icon.svg',
             sizes: '192x192',
-            type: 'image/png'
+            type: 'image/svg+xml',
+            purpose: 'any maskable'
           },
           {
-            src: 'pwa-512x512.png',
+            src: 'dump-icon.svg',
             sizes: '512x512',
-            type: 'image/png'
+            type: 'image/svg+xml',
+            purpose: 'any maskable'
           }
         ]
       }

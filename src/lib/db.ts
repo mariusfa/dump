@@ -1,4 +1,4 @@
-const DB_NAME = 'huskeapp'
+const DB_NAME = 'dump-app'
 const DB_VERSION = 1
 const STORE_NAME = 'images'
 
