@@ -57,9 +57,16 @@ body::before {
   left: 0;
   right: 0;
   bottom: 0;
-  background-image: 
+  background-image:
     repeating-linear-gradient(
       90deg,
+      transparent,
+      transparent calc(100% / 7 - 1px),
+      var(--grid-line) calc(100% / 7 - 1px),
+      var(--grid-line) calc(100% / 7)
+    ),
+    repeating-linear-gradient(
+      0deg,
       transparent,
       transparent calc(100% / 7 - 1px),
       var(--grid-line) calc(100% / 7 - 1px),
