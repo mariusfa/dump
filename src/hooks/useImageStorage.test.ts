@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest'
-import { renderHook, waitFor } from '@testing-library/react'
+import { renderHook, waitFor, act } from '@testing-library/react'
 import { useImageStorage } from './useImageStorage'
 import * as db from '../lib/db'
 
@@ -63,11 +63,13 @@ describe('useImageStorage', () => {
 
     const file = new File(['test'], 'test.png', { type: 'image/png' })
     const imageData = new Blob(['test'], { type: 'image/png' })
-    
+
     const newImage = { id: 1, imageData, imageType: 'image/png', timestamp: Date.now() }
     vi.mocked(db.getAllImages).mockResolvedValue([newImage])
 
-    await result.current.addImage(file, 'Test description')
+    await act(async () => {
+      await result.current.addImage(file, 'Test description')
+    })
 
     await waitFor(() => {
       expect(result.current.images).toHaveLength(1)
@@ -75,7 +77,7 @@ describe('useImageStorage', () => {
 
     expect(db.saveImage).toHaveBeenCalledWith(
       expect.objectContaining({
-        file,
+        imageType: 'image/png',
         description: 'Test description'
       })
     )
@@ -94,7 +96,9 @@ describe('useImageStorage', () => {
 
     vi.mocked(db.getAllImages).mockResolvedValue([])
 
-    await result.current.removeImage(1)
+    await act(async () => {
+      await result.current.removeImage(1)
+    })
 
     await waitFor(() => {
       expect(result.current.images).toHaveLength(0)
@@ -128,7 +132,9 @@ describe('useImageStorage', () => {
     const newImage = { id: 1, imageData: new Blob(['test'], { type: 'image/png' }), imageType: 'image/png', timestamp: Date.now() }
     vi.mocked(db.getAllImages).mockResolvedValue([newImage])
 
-    await result.current.refresh()
+    await act(async () => {
+      await result.current.refresh()
+    })
 
     await waitFor(() => {
       expect(result.current.images).toHaveLength(1)
