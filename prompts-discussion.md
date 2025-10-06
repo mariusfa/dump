@@ -294,3 +294,144 @@ Grunner:
 5. Quick capture (nice-to-have for power users)
 
 ---
+
+## Code Refactoring Analysis Before Feature Expansion
+
+**User:** Strålende! Før vi eventuelt går i gang med å utvide funksjonaliteten trenger vi å forsikre oss om at appen rent kodemessige er klar for viderutvikling. Uten å gjøre noen kodeendringer skal du benytte din ekspertise til å gjøre en analyse av om vi burde refaktorere og eventuelt hva før vi går i gang med utvidelser. Top 5 forslag, kun forslag ingen faktiske kodeendringer.
+
+**Claude:** Utmerket spørsmål! La meg analysere kodebasen grundig:
+
+### Kodebase Status
+- **Total linjer kode:** ~707 linjer (ekskludert tester)
+- **Struktur:** Godt organisert (hooks, components, lib)
+- **Test coverage:** 40+ tester
+- **Arkitektur:** Layered (db → hooks → components)
+
+### Top 5 Refactoring-forslag før videre utvikling:
+
+---
+
+#### 1. **Optimaliser reloading-strategien i useImageStorage**
+**Prioritet:** Høy
+**Problem:**
+Hver gang du oppdaterer/sletter et bilde, kjører vi `loadImages()` som henter ALT på nytt fra IndexedDB. Med 100+ bilder blir dette tregt.
+
+**Løsning:**
+- Implementer optimistisk UI-oppdatering
+- Oppdater lokal state direkte, skip reload
+- Kun reload ved feil eller initial load
+
+**Eksempel:**
+```typescript
+// I stedet for:
+await deleteImage(id)
+await loadImages() // Henter alt på nytt 😢
+
+// Gjør:
+await deleteImage(id)
+setImages(prev => prev.filter(img => img.id !== id)) // Instant! 🚀
+```
+
+**Impact:** Massiv performance-boost, spesielt med mange bilder
+
+---
+
+#### 2. **Trekk ut ImageCard i mindre komponenter**
+**Prioritet:** Middels-høy
+**Problem:**
+ImageCard.tsx er 170 linjer med 3 ulike ansvarsområder:
+- Bilde + metadata-visning
+- Beskrivelse-editing
+- Audio-opptak
+
+Dette gjør komponenten vanskelig å teste og gjenbruke.
+
+**Løsning:**
+Splitt i:
+- `ImageCard` (container)
+- `DescriptionEditor` (egen komponent)
+- `AudioRecorder` (egen komponent)
+
+**Impact:** Bedre testbarhet, lettere å vedlikeholde, kan gjenbruke komponenter
+
+---
+
+#### 3. **Legg til error-handling UI**
+**Prioritet:** Middels
+**Problem:**
+`useImageStorage` har `error`-state, men den vises aldri til brukeren. Hvis IndexedDB feiler, ser brukeren bare loading → tomt.
+
+**Løsning:**
+- Legg til `<ErrorState error={error} onRetry={refresh} />` komponent
+- Vis feilmelding med "Prøv igjen"-knapp
+- Logger errors til console for debugging
+
+**Impact:** Bedre brukeropplevelse ved feil, lettere å debugge
+
+---
+
+#### 4. **Abstrahér IndexedDB-transaksjonene**
+**Prioritet:** Lav-middels
+**Problem:**
+`db.ts` har mye repeterende transaction-boilerplate:
+```typescript
+const transaction = db.transaction(STORE_NAME, 'readwrite')
+const store = transaction.objectStore(STORE_NAME)
+const request = store.delete(id)
+request.onsuccess = () => resolve()
+request.onerror = () => reject(request.error)
+```
+
+**Løsning:**
+Lag hjelpefunksjon:
+```typescript
+async function withStore<T>(
+  mode: IDBTransactionMode,
+  operation: (store: IDBObjectStore) => IDBRequest<T>
+): Promise<T>
+```
+
+**Impact:** Mindre duplikasjon, enklere å legge til nye operasjoner
+
+---
+
+#### 5. **Type-safe image metadata med Zod/validation**
+**Prioritet:** Lav
+**Problem:**
+Ingen runtime-validering av data fra IndexedDB. Hvis datastrukturen endrer seg eller blir korrupt, får vi runtime errors.
+
+**Løsning:**
+- Legg til Zod for schema-validering
+- Valider data når den hentes fra IndexedDB
+- Graceful fallback for ugyldig data
+
+**Impact:** Mer robust ved migrasjoner, bedre feilhåndtering
+
+---
+
+### Anbefalt prioritering før ny funksjonalitet:
+
+**Kritisk (gjør nå):**
+1. ✅ #1 - Optimaliser reloading (påvirker alle fremtidige features)
+
+**Viktig (gjør snart):**
+2. ✅ #2 - Splitt ImageCard (før du legger til mer UI)
+3. ✅ #3 - Error handling UI (grunnleggende UX)
+
+**Nice-to-have (kan vente):**
+4. ⏳ #4 - Abstrahér DB-kode (gjør når du skal legge til søk/filter)
+5. ⏳ #5 - Validering (gjør hvis du opplever data-problemer)
+
+### Bonus-observasjoner:
+
+**Ting som er bra og IKKE trenger refaktorering:**
+- ✅ Hook-arkitekturen er solid
+- ✅ Type-safety med TypeScript er god
+- ✅ Separation of concerns (db/hooks/components) er fornuftig
+- ✅ URL cleanup i useImageUrls er godt håndtert
+- ✅ Test-coverage er bra
+
+**Konklusjon:**
+Kodebasen er generelt i god stand! Hovedfokus bør være på **#1 (optimistisk UI)** før du legger til søk/filter/export, siden alle disse kommer til å trigge mange updates.
+
+---
