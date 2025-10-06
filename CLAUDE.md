@@ -52,9 +52,11 @@ The app uses `vite-plugin-pwa` with `autoUpdate` registration. The PWA manifest 
 
 ## Documentation Workflow
 
-**CRITICAL**: For EVERY instruction, prompt, or change made in this repository, you MUST update the following three files in this exact order:
+**CRITICAL**: For EVERY interaction in this repository, you MUST update documentation files according to these rules:
 
-1. **`prompts.md`**: Append the user's prompt/instruction to this file
+### For changes that involve code/files:
+
+1. **`prompts.md`**: Append the user's prompt/instruction and actions taken
 2. **`prompts-visualization.md`**: Add a new section with:
    - The prompt in a code block
    - List of files changed
@@ -62,7 +64,14 @@ The app uses `vite-plugin-pwa` with `autoUpdate` registration. The PWA manifest 
    - Include line count statistics (lines changed per file and total)
 3. **`public/dev-journey.svg`**: Update the SVG visualization to include the new development step
 
-This documentation process is MANDATORY for all changes. No exceptions.
+### For discussions without code changes:
+
+1. **`prompts-discussion.md`**: Log both the user's question and your full response
+   - Include context and reasoning
+   - Preserve formatting and structure
+   - No need to update prompts-visualization.md or dev-journey.svg for pure discussions
+
+This documentation process is MANDATORY for all interactions. No exceptions.
 
 ## Git Workflow
 

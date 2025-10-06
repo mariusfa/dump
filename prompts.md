@@ -439,3 +439,15 @@ The DUMP app was built through iterative development with focus on:
   1. Update prompts.md with user prompts
   2. Update prompts-visualization.md with code block, file list, description, and line stats
   3. Update public/dev-journey.svg with new development step
+- Committed and pushed changes (commit 8c14f66)
+
+---
+
+## Separate Discussion File
+
+**User:** Ser nå at vi kanskje skulle skilt ut logging av denne type drodling og spørsmål som ikke medfører kodeendringer ut fra prompts.md til en egen fil, f.eks prompts-discussion.md. Kan du opprette den filen og sørge for at fra nå av så logger du både spørsmålene fra meg og svarene dine i denne filen i stedet for i prompts.md
+
+**Actions taken:**
+- Created new file `prompts-discussion.md` for discussions without code changes
+- Moved previous discussions (multiple piles, export functionality) to new file
+- Will update CLAUDE.md to reflect new documentation workflow

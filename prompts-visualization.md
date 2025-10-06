@@ -524,6 +524,33 @@ i dette repoet. Kan du lage instruksjoner som sørger for dette og elgger det f.
 
 ---
 
+## 24. Separate Discussion Documentation
+
+```
+User: "Ser nå at vi kanskje skulle skilt ut logging av denne type drodling og spørsmål
+som ikke medfører kodeendringer ut fra prompts.md til en egen fil, f.eks
+prompts-discussion.md. Kan du opprette den filen og sørge for at fra nå av så logger
+du både spørsmålene fra meg og svarene dine i denne filen i stedet for i prompts.md"
+```
+
+**Files Changed:**
+- `prompts-discussion.md` (new file, +135 lines)
+- `prompts.md` (-22 lines, +6 lines)
+- `CLAUDE.md` (+8 lines, -5 lines)
+- `prompts-visualization.md` (this entry)
+- `public/dev-journey.svg` (pending update)
+
+**Functionality:**
+- Created new file `prompts-discussion.md` to separate discussions from code changes
+- Moved previous discussions (multiple piles, export functionality) to new file
+- Updated CLAUDE.md documentation workflow with two distinct paths:
+  - Code changes → prompts.md + prompts-visualization.md + dev-journey.svg
+  - Discussions only → prompts-discussion.md (no visualization updates needed)
+- Total changes: ~144 new lines, ~27 lines modified across 5 files
+- Improves separation of concerns in documentation
+
+---
+
 ## Summary Statistics
 
 **Total Commits:** 15+ (excluding documentation)
