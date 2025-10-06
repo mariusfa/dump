@@ -2,6 +2,34 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## ⚠️ CRITICAL: Documentation Workflow - READ THIS FIRST ⚠️
+
+**MANDATORY**: For EVERY interaction (questions, discussions, code changes), you MUST document IMMEDIATELY in the correct file BEFORE responding to the user:
+
+### For discussions/questions WITHOUT code changes:
+**→ Update `prompts-discussion.md` with:**
+- User's full question
+- Your complete response with reasoning
+- Preserve all formatting and structure
+
+**Examples:**
+- "What do you think about feature X?" → `prompts-discussion.md`
+- "Should we use technology Y?" → `prompts-discussion.md`
+- "Can you suggest top 5 features?" → `prompts-discussion.md`
+
+### For changes that involve code/files:
+**→ Update ALL three files:**
+1. **`prompts.md`**: User prompt + actions taken
+2. **`prompts-visualization.md`**: Code block + files changed + line stats + description
+3. **`public/dev-journey.svg`**: Add new step to visualization
+
+**Examples:**
+- "Add search functionality" → All 3 files
+- "Fix bug in component X" → All 3 files
+- "Update CLAUDE.md" → All 3 files (yes, even documentation changes!)
+
+**⚠️ NO EXCEPTIONS. Document FIRST, respond SECOND. ⚠️**
+
 ## Project Overview
 
 DUMP (Digital Unorganized Memory Pile) is a Progressive Web App (PWA) for capturing and storing images using the device camera. Images are stored locally in IndexedDB for offline access. Built with React + TypeScript + Vite.
@@ -50,28 +78,6 @@ Tests use Vitest + React Testing Library with `jsdom` environment. IndexedDB tes
 
 The app uses `vite-plugin-pwa` with `autoUpdate` registration. The PWA manifest is configured for standalone display mode with Norwegian text. Icon is `dump-icon.svg` in the public folder.
 
-## Documentation Workflow
-
-**CRITICAL**: For EVERY interaction in this repository, you MUST update documentation files according to these rules:
-
-### For changes that involve code/files:
-
-1. **`prompts.md`**: Append the user's prompt/instruction and actions taken
-2. **`prompts-visualization.md`**: Add a new section with:
-   - The prompt in a code block
-   - List of files changed
-   - Short description of functionality change
-   - Include line count statistics (lines changed per file and total)
-3. **`public/dev-journey.svg`**: Update the SVG visualization to include the new development step
-
-### For discussions without code changes:
-
-1. **`prompts-discussion.md`**: Log both the user's question and your full response
-   - Include context and reasoning
-   - Preserve formatting and structure
-   - No need to update prompts-visualization.md or dev-journey.svg for pure discussions
-
-This documentation process is MANDATORY for all interactions. No exceptions.
 
 ## Git Workflow
 

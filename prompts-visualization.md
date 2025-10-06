@@ -551,10 +551,35 @@ du både spørsmålene fra meg og svarene dine i denne filen i stedet for i prom
 
 ---
 
+## 25. Strengthen Documentation Workflow
+
+```
+User: "Trenger vi å oppdatere CLAUDE.md og prosessbeskrivelsen for dokumentering
+for at du skal huske å dokumentere alle prompts i de korrekte filene?"
+```
+
+**Files Changed:**
+- `CLAUDE.md` (+26 lines, relocated and enhanced)
+- `prompts.md` (+13 lines)
+- `prompts-visualization.md` (this entry)
+- `public/dev-journey.svg` (pending update)
+
+**Functionality:**
+- Moved documentation workflow to very top of CLAUDE.md (impossible to miss)
+- Added ⚠️ warning emojis and stronger language ("Document FIRST, respond SECOND")
+- Added concrete examples for each interaction type:
+  - Discussions → `prompts-discussion.md`
+  - Code changes → all 3 files (prompts.md, prompts-visualization.md, dev-journey.svg)
+- Removed duplicate documentation section from lower in file
+- Total changes: ~39 lines modified across 4 files
+- Goal: Prevent forgetting documentation steps by making instructions more prominent and explicit
+
+---
+
 ## Summary Statistics
 
 **Total Commits:** 15+ (excluding documentation)
-**Total Files Created:** 23+
+**Total Files Created:** 24+
 **Total Tests:** 40+
 **Lines of Code:** ~2600+
 
@@ -571,6 +596,7 @@ du både spørsmålene fra meg og svarene dine i denne filen i stedet for i prom
 10. ✅ Centered layout
 11. ✅ Complete documentation with auto-updating SVG
 12. ✅ Documentation process automation
+13. ✅ Strengthened documentation workflow
 
 **Tech Stack:**
 - React 19 + TypeScript

@@ -451,3 +451,17 @@ The DUMP app was built through iterative development with focus on:
 - Created new file `prompts-discussion.md` for discussions without code changes
 - Moved previous discussions (multiple piles, export functionality) to new file
 - Will update CLAUDE.md to reflect new documentation workflow
+
+---
+
+## Strengthen Documentation Workflow Instructions
+
+**User:** Trenger vi å oppdatere CLAUDE.md og prosessbeskrivelsen for dokumentering for at du skal huske å dokumentere alle prompts i de korrekte filene?
+
+**Actions taken:**
+- Moved documentation workflow to top of CLAUDE.md (right after intro)
+- Added ⚠️ warning emojis for visibility
+- Made it explicit: "Document FIRST, respond SECOND"
+- Added concrete examples for each interaction type
+- Removed duplicate section further down in file
+- Goal: Make it impossible to miss the documentation requirement
