@@ -50,6 +50,20 @@ Tests use Vitest + React Testing Library with `jsdom` environment. IndexedDB tes
 
 The app uses `vite-plugin-pwa` with `autoUpdate` registration. The PWA manifest is configured for standalone display mode with Norwegian text. Icon is `dump-icon.svg` in the public folder.
 
+## Documentation Workflow
+
+**CRITICAL**: For EVERY instruction, prompt, or change made in this repository, you MUST update the following three files in this exact order:
+
+1. **`prompts.md`**: Append the user's prompt/instruction to this file
+2. **`prompts-visualization.md`**: Add a new section with:
+   - The prompt in a code block
+   - List of files changed
+   - Short description of functionality change
+   - Include line count statistics (lines changed per file and total)
+3. **`public/dev-journey.svg`**: Update the SVG visualization to include the new development step
+
+This documentation process is MANDATORY for all changes. No exceptions.
+
 ## Git Workflow
 
 **IMPORTANT**: Never create git commits without explicit permission. Always ask the user before committing changes, as they prefer to review changes with `git diff` in their own editor first.

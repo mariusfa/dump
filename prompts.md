@@ -424,3 +424,18 @@ The DUMP app was built through iterative development with focus on:
 - Gradient background with animated grid lines
 - Glassmorphism UI design
 - 40+ tests covering all functionality
+
+---
+
+## Documentation Process Automation
+
+**User:** Jeg ønsker at alle instruksjoner og prompts jeg gir legges til i filen prompts. I tillegg har vi filen prompts-visualization.md Der prompten kommer i en code block og under så kommer en liste over hvilke filer som er blitt endret, og en kort tekstlig beskrivelse av funksjonalitetsendringen. Ta gjerne med antall linjer som er er endret pr fil og totalt i den tekstlige beskrivelsen. Til sist så skal dev-journey.svg filen i public catalogen oppdateres.
+
+**User:** Det skal være prompts.md. Men det jeg ønsker er at denne prosessen allid følges i dette repoet. Kan du lage instruksjoner som sørger for dette og elgger det f.eks i CLAUDE.md
+
+**Actions taken:**
+- Added "Documentation Workflow" section to CLAUDE.md
+- Established mandatory documentation process for all changes:
+  1. Update prompts.md with user prompts
+  2. Update prompts-visualization.md with code block, file list, description, and line stats
+  3. Update public/dev-journey.svg with new development step

@@ -494,6 +494,36 @@ User: "Option C" (Add to existing images on card)
 
 ---
 
+## 23. Documentation Process Automation
+
+```
+User: "Jeg ønsker at alle instruksjoner og prompts jeg gir legges til i filen prompts.
+I tillegg har vi filen prompts-visualization.md Der prompten kommer i en code block
+og under så kommer en liste over hvilke filer som er blitt endret, og en kort tekstlig
+beskrivelse av funksjonalitetsendringen. Ta gjerne med antall linjer som er er endret
+pr fil og totalt i den tekstlige beskrivelsen. Til sist så skal dev-journey.svg filen
+i public catalogen oppdateres."
+
+User: "Det skal være prompts.md. Men det jeg ønsker er at denne prosessen allid følges
+i dette repoet. Kan du lage instruksjoner som sørger for dette og elgger det f.eks i CLAUDE.md"
+```
+
+**Files Changed:**
+- `CLAUDE.md` (+14 lines)
+- `prompts.md` (+16 lines)
+- `prompts-visualization.md` (this entry)
+- `public/dev-journey.svg` (pending update)
+
+**Functionality:**
+- Added "Documentation Workflow" section to CLAUDE.md
+- Created mandatory documentation process for ALL changes in the repository
+- Process requires updating 3 files: prompts.md, prompts-visualization.md, and dev-journey.svg
+- Includes line count statistics and detailed change descriptions
+- Total changes: ~30+ lines across 4 files
+- Ensures complete development history is automatically maintained
+
+---
+
 ## Summary Statistics
 
 **Total Commits:** 15+ (excluding documentation)
@@ -513,6 +543,7 @@ User: "Option C" (Add to existing images on card)
 9. ✅ Audio recording and playback
 10. ✅ Centered layout
 11. ✅ Complete documentation with auto-updating SVG
+12. ✅ Documentation process automation
 
 **Tech Stack:**
 - React 19 + TypeScript
